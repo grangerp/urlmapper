@@ -62,24 +62,3 @@ class UrlMap(object):
             except UrlNotMatch:
                 pass
         raise UrlNotFound()
-
-
-if __name__ == '__main__':
-    def a():
-        return 'a'
-    def b():
-        return 'b'
-    def c(year, month, day):
-        return year, month, day
-    def d(year=None, month=None, day=None, param=None):
-        return year, month, day, param
-
-    urlmap = UrlMap()
-    urlmap.add(r'^articles/2003/$', a)
-    urlmap.add(r'^articles/(\d{4})/$', b)
-    urlmap.add(r'^articles/(\d{4})/(\d{2})/$', c)
-    #urlmap.add(r'^articles/(\d{4})/(\d{2})/(\d+)/$', c)
-    urlmap.add(r'^articles/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$', d)
-
-    path = 'articles/2004/12/21/'
-    print urlmap.map_path(path).call()
